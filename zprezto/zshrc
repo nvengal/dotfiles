@@ -12,42 +12,29 @@ fi
 
 # Customize to your needs...
 
-# Extension of ~/.zpreztorc
-zstyle ':prezto:load' pmodule \
-  'git' \
-  'homebrew' \
-  'docker' \
-  'node' \
-  'python' \
-  'ruby'
+# Postgres Vars and Shortcuts
+export PGDATA='/usr/local/var/postgres'
+export PGHOST=localhost
+alias start-pg='pg_ctl -l $PGDATA/server.log start'
+alias stop-pg='pg_ctl stop -m fast'
+alias show-pg-status='pg_ctl status'
+alias restart-pg='pg_ctl reload'
 
-zstyle ':prezto:module:editor' key-bindings 'vi'
-
-# zshrc
-export VISUAL=vim
-export EDITOR="$VISUAL"
-
+# Terminal history fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export PGDATA='/usr/local/var/postgres'
-# export PGHOST=localhost
-# alias start-pg='pg_ctl -l $PGDATA/server.log start'
-# alias stop-pg='pg_ctl stop -m fast'
-# alias show-pg-status='pg_ctl status'
-# alias restart-pg='pg_ctl reload'
-
-# # For building the mysql2 gem, not sure what the best solution is
+# For building the mysql2 gem, not sure what the best solution is
 # export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
-# PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
-# PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
-# export PATH
+# Init rbenv if exists
+[ -n "$(command -v rbenv)" ] && eval "$(rbenv init -)"
 
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# Rust
+[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 
-# eval "$(rbenv init -)"
-# export PATH="./bin:$PATH"
+alias standup='open -a "Google Chrome"  https://meet.google.com/ppy-ninx-aqn'
 
-# # alias standup = 'open -a "Google Chrome" https://meet.google.com/kwg-gpmk-zbc'
-
-# source $HOME/.cargo/env
+PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
+PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
+PATH=/usr/local/opt/mysql@5.7/bin:$PATH
+export PATH="./bin:$PATH"
