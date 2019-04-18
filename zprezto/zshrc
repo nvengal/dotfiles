@@ -11,6 +11,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
+PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
+PATH=/usr/local/opt/mysql@5.7/bin:$PATH
+export PATH="./bin:$PATH"
 
 # Postgres Vars and Shortcuts
 export PGDATA='/usr/local/var/postgres'
@@ -23,18 +27,17 @@ alias restart-pg='pg_ctl reload'
 # Terminal history fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# For building the mysql2 gem, not sure what the best solution is
-# export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
 # Init rbenv if exists
 [ -n "$(command -v rbenv)" ] && eval "$(rbenv init -)"
+
+# For building the mysql2 gem, not sure what the best solution is
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 
 # Rust
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 
 alias standup='open -a "Google Chrome"  https://meet.google.com/ppy-ninx-aqn'
 
-PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
-PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
-PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-export PATH="./bin:$PATH"
+# AWS cli autocompletion
+[ -f $HOME/Library/Python/2.7/bin/aws_zsh_completer.sh ] && \
+  source $HOME/Library/Python/2.7/bin/aws_zsh_completer.sh
