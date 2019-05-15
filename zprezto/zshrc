@@ -11,6 +11,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+export TERM=xterm-256color
+
 PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
 PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
 PATH=/usr/local/opt/mysql@5.7/bin:$PATH
