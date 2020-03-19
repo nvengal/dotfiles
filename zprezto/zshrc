@@ -12,19 +12,7 @@ fi
 
 # Customize to your needs...
 export TERM=xterm-256color
-
-PATH=/Users/nikhil/Library/Python/2.7/bin:$PATH
-PATH=/Users/nikhil/Library/Python/3.7/bin:$PATH
-PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-export PATH="./bin:$PATH"
-
-# Postgres Vars and Shortcuts
-export PGDATA='/usr/local/var/postgres'
-export PGHOST=localhost
-alias start-pg='pg_ctl -l $PGDATA/server.log start'
-alias stop-pg='pg_ctl stop -m fast'
-alias show-pg-status='pg_ctl status'
-alias restart-pg='pg_ctl reload'
+export PATH=$PATH:$HOME/bin
 
 # Terminal history fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -32,14 +20,11 @@ alias restart-pg='pg_ctl reload'
 # Init rbenv if exists
 [ -n "$(command -v rbenv)" ] && eval "$(rbenv init -)"
 
-# For building the mysql2 gem, not sure what the best solution is
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
-
 # Rust
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
 
-alias standup='open -a "Google Chrome"  https://meet.google.com/ppy-ninx-aqn'
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# AWS cli autocompletion
-[ -f $HOME/Library/Python/2.7/bin/aws_zsh_completer.sh ] && \
-  source $HOME/Library/Python/2.7/bin/aws_zsh_completer.sh
+export PATH="$HOME/.rbenv/bin:$PATH"

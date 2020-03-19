@@ -31,3 +31,7 @@ https://github.com/rbenv/rbenv
 ## KeepingYouAwake
 https://github.com/newmarcel/KeepingYouAwake
 `brew cask install keepingyouawake`
+
+## Terminal Color Scheme
+https://github.com/Mayccoll/Gogh
+`bash -c  "$(wget -qO- https://git.io/vQgMr)"`

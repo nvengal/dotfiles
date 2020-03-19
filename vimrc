@@ -6,9 +6,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ajh17/Spacegray.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'lepture/vim-jinja'
-Plug 'w0rp/ale'
 Plug 'scrooloose/nerdcommenter'
+
+Plug 'leafgarland/typescript-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -284,11 +284,3 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
-" Otherwise huge files might get linted and freeze.
-" let g:ale_lint_on_enter = 0
-" Set this in your vimrc file to disabling highlighting
-let g:ale_set_highlights = 0
