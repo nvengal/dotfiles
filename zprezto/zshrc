@@ -17,6 +17,8 @@ fi
 # echo -n test | xclip
 alias xclip="xclip -selection c"
 
+alias be="bundle exec"
+
 export TERM=xterm-256color
 
 export PATH=$PATH:/home/nikhil/tools/bin
