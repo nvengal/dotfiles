@@ -4,6 +4,11 @@ set -e
 
 sudo apt update
 
+# Colorscheme
+#   https://github.com/Mayccoll/Gogh
+sudo apt install dconf-cli uuid-runtime
+bash -c "$(curl -sLo- https://git.io/vQgMr)"
+
 # TMUX
 #   https://github.com/tmux/tmux
 sudo apt install tmux -y
@@ -16,3 +21,5 @@ sudo apt install fonts-hack-ttf -y
 #   https://starship.rs/
 [ -n "$(command -v starship)" ] \
   || curl -fsSL https://starship.rs/install.sh | bash
+
+echo "SUCCESS"
