@@ -25,3 +25,13 @@ fi
 
 # tmux
 ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
+
+# rbenv https://github.com/rbenv/rbenv
+if [ ! -d "${HOME}/.rbenv" ]
+then
+  git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
+  $HOME/.rbenv/bin/rbenv init
+
+  mkdir -p "$(rbenv root)"/plugins
+  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+fi
