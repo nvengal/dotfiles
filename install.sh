@@ -1,4 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
+
+set -e
 
 # vim-plug https://github.com/junegunn/vim-plug
 ln -is ${PWD}/vimrc ${HOME}/.vimrc
@@ -34,4 +36,17 @@ then
 
   mkdir -p "$(rbenv root)"/plugins
   git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+fi
+
+# nvm (install or update) https://github.com/nvm-sh/nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+# https://github.com/nvengal/tools
+if [ ! -d "${HOME}/tools" ]
+then
+  git clone git@github.com:nvengal/tools $HOME/tools
+
+  pushd $HOME/tools
+  ./setup.sh
+  popd
 fi
