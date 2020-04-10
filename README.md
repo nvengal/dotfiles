@@ -10,6 +10,10 @@ vim +PlugInstall
 ## iterm theme
 https://github.com/mhkeller/spacegray-eighties-iterm
 
+## Terminal Color Scheme
+https://github.com/Mayccoll/Gogh
+`bash -c  "$(wget -qO- https://git.io/vQgMr)"`
+
 ## zsh
 https://github.com/sorin-ionescu/prezto
 
@@ -31,7 +35,3 @@ https://github.com/rbenv/rbenv
 ## KeepingYouAwake
 https://github.com/newmarcel/KeepingYouAwake
 `brew cask install keepingyouawake`
-
-## Terminal Color Scheme
-https://github.com/Mayccoll/Gogh
-`bash -c  "$(wget -qO- https://git.io/vQgMr)"`
