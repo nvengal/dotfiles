@@ -9,6 +9,10 @@ sudo apt update
 sudo apt install dconf-cli uuid-runtime
 bash -c "$(curl -sLo- https://git.io/vQgMr)"
 
+# xclip
+#   Enables copy/paste to system clipboard from terminal
+sudo apt install xclip -y
+
 # TMUX
 #   https://github.com/tmux/tmux
 sudo apt install tmux -y
