@@ -21,6 +21,8 @@ alias be="bundle exec"
 
 alias gitup="git checkout master && git fetch upstream && git rebase upstream/master"
 
+alias workspace="docker run -ti --network host -v $HOME/.ssh:/root/.ssh debian:10 /bin/bash"
+
 export TERM=xterm-256color
 
 export PATH=$PATH:$HOME/tools/bin
