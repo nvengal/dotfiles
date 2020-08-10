@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 set -e
 
@@ -16,6 +16,10 @@ sudo apt install xclip -y
 # TMUX
 #   https://github.com/tmux/tmux
 sudo apt install tmux -y
+
+# ripgrep
+#   https://github.com/BurntSushi/ripgrep
+sudo apt install ripgrep
 
 # Powerline Hack Font (used by Starship)
 #   https://github.com/source-foundry/Hack

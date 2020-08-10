@@ -28,25 +28,30 @@ fi
 # tmux
 ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
 
-# rbenv https://github.com/rbenv/rbenv
-if [ ! -d "${HOME}/.rbenv" ]
+# asdf version manager https://github.com/asdf-vm/asdf
+if [ ! -d "${HOME}/.asdf" ]
 then
-  git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
-  $HOME/.rbenv/bin/rbenv init
+  git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
+  pushd $HOME/.asdf
+  git checkout "$(git describe --abbrev=0 --tags)"
+  popd
 
-  mkdir -p "$(rbenv root)"/plugins
-  git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  ln -is ${PWD}/asdfrc ${HOME}/.asdfrc
 fi
-
-# nvm (install or update) https://github.com/nvm-sh/nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 
 # https://github.com/nvengal/tools
 if [ ! -d "${HOME}/tools" ]
 then
   git clone git@github.com:nvengal/tools $HOME/tools
 
-  pushd $HOME/tools
-  ./setup.sh
-  popd
+  if [ -n "$(command -v docker)" ]
+  then
+    pushd $HOME/tools
+    bash ./setup.sh
+    popd
+  else
+    echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    echo "  WARNING nvengal/tools installation requires docker"
+    echo "  Install docker and run $HOME/tools/setup.sh"
+  fi
 fi
