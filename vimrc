@@ -168,6 +168,8 @@ set smarttab
 
 " 1 tab == 2 spaces
 set shiftwidth=2
+" < and > rounds indent spacing to next multiple
+set shiftround
 set tabstop=2
 
 set ai "Auto indent
