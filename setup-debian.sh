@@ -28,7 +28,7 @@ sudo apt install fonts-hack-ttf -y
 # Starship Prompt
 #   https://starship.rs/
 [ -n "$(command -v starship)" ] \
-  || curl -fsSL https://starship.rs/install.sh | bash
+  || curl -fsSL https://starship.rs/install.sh | sh
 
 # Docker mysql conf
 #   Unclear why this step is necessary
