@@ -57,3 +57,9 @@ then
     echo "  Install docker and run $HOME/tools/setup.sh"
   fi
 fi
+
+# Powerline Fonts
+# https://github.com/powerline/fonts
+git clone https://github.com/powerline/fonts.git --depth=1
+pushd fonts && ./install.sh
+popd && rm -rf fonts

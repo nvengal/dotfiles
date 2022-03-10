@@ -4,11 +4,6 @@ set -e
 
 sudo apt update
 
-# Colorscheme
-#   https://github.com/Mayccoll/Gogh
-sudo apt install dconf-cli uuid-runtime
-bash -c "$(curl -sLo- https://git.io/vQgMr)"
-
 # xclip
 #   Enables copy/paste to system clipboard from terminal
 sudo apt install xclip -y
@@ -20,10 +15,6 @@ sudo apt install tmux -y
 # ripgrep
 #   https://github.com/BurntSushi/ripgrep
 sudo apt install ripgrep
-
-# Powerline Hack Font (used by Starship)
-#   https://github.com/source-foundry/Hack
-sudo apt install fonts-hack-ttf -y
 
 # Docker mysql conf
 #   Unclear why this step is necessary
