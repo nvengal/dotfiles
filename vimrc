@@ -45,10 +45,6 @@ command W w !sudo tee % > /dev/null
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight chars over 80 len
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%81v.\+/
-
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
