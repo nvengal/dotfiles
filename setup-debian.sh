@@ -25,11 +25,6 @@ sudo apt install ripgrep
 #   https://github.com/source-foundry/Hack
 sudo apt install fonts-hack-ttf -y
 
-# Starship Prompt
-#   https://starship.rs/
-[ -n "$(command -v starship)" ] \
-  || curl -fsSL https://starship.rs/install.sh | sh
-
 # Docker mysql conf
 #   Unclear why this step is necessary
 #   Without it mysql in docker is not allowed to create a lock file

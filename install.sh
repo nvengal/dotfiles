@@ -37,6 +37,8 @@ then
   popd
 
   ln -is ${PWD}/asdfrc ${HOME}/.asdfrc
+
+  ./install-asdf-plugins.sh
 fi
 
 # https://github.com/nvengal/tools
