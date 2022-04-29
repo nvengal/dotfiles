@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'rust-lang/rust.vim'
 Plug 'leafgarland/typescript-vim'
 
 " Initialize plugin system
@@ -16,6 +17,11 @@ call plug#end()
 " NERDCommenter {
   let g:NERDSpaceDelims = 1
   let g:NERDDefaultAlign = 'left'
+  let g:NERDToggleCheckAllLines = 1
+" }
+
+" Rust.Vim {
+  let g:rustfmt_autosave = 1
 " }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
