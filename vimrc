@@ -21,7 +21,11 @@ call plug#end()
 " }
 
 " Rust.Vim {
-  let g:rustfmt_autosave = 1
+"  let g:rustfmt_autosave = 1
+" }
+
+" FZF {
+  noremap <C-p> :FZF<CR>
 " }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
