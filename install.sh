@@ -2,14 +2,16 @@
 
 set -e
 
-## vim-plug https://github.com/junegunn/vim-plug
-#ln -is ${PWD}/vimrc ${HOME}/.vimrc
-#if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
-#then
-#  curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#fi
-#
+setup_vim() {
+  # vim-plug https://github.com/junegunn/vim-plug
+  if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
+  then
+    curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall +qall
+  fi
+}
+
 ## tmux
 #ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
 #
@@ -35,6 +37,8 @@ set -e
 install_linux() {
   packages="build-essential curl file git libssl-dev stow xclip"
   sudo apt update && sudo apt install --assume-yes $packages
+  stow git vim
+  setup_vim
 }
 
 main() {
@@ -48,8 +52,6 @@ main() {
       exit 1
       ;;
   esac
-
-  stow git
 }
 
 main
