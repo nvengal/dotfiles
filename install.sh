@@ -23,17 +23,6 @@ install_fonts() {
 ## tmux
 #ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
 
-# # asdf version manager https://github.com/asdf-vm/asdf
-# install_asdf() {
-#   if [ ! -d "${HOME}/.asdf" ]
-#   then
-#     git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
-#     pushd $HOME/.asdf
-#     git checkout "$(git describe --abbrev=0 --tags)"
-#     popd
-#   fi
-# }
-
 # https://www.rust-lang.org/tools/install
 install_rust() {
   if [ ! -x "$(command -v rustup)" ]
