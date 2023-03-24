@@ -43,15 +43,15 @@ install_rust() {
   fi
 }
 
-# https://starship.rs fancy prompt
 # https://github.com/jdxcode/rtx asdf in rust
+# https://starship.rs fancy prompt
 install_cargo_packages() {
   packages="rtx-cli starship"
   cargo install $packages --locked
 }
 
 install_linux() {
-  packages="build-essential curl file git libssl-dev stow xclip"
+  packages="alacritty build-essential cmake curl file git libssl-dev stow xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   stow bash git vim
   setup_vim
