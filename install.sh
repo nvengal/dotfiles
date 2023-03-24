@@ -1,65 +1,80 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -e
 
-# vim-plug https://github.com/junegunn/vim-plug
-ln -is ${PWD}/vimrc ${HOME}/.vimrc
-if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
-then
-  curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-# zpresto https://github.com/sorin-ionescu/prezto
-if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]
-then
-  setopt EXTENDED_GLOB
-
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-  mv "${ZDOTDIR:-$HOME}"/.zprezto/runcoms "${ZDOTDIR:-$HOME}"/.zprezto/runcoms.orig
-
-  ln -s ${PWD}/zprezto "${ZDOTDIR:-$HOME}"/.zprezto/runcoms
-
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    ln -is "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-  done
-fi
-
-# tmux
-ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
-
-# asdf version manager https://github.com/asdf-vm/asdf
-if [ ! -d "${HOME}/.asdf" ]
-then
-  git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf
-  pushd $HOME/.asdf
-  git checkout "$(git describe --abbrev=0 --tags)"
-  popd
-
-  ln -is ${PWD}/asdfrc ${HOME}/.asdfrc
-
-  ./install-asdf-plugins.sh
-fi
-
-# https://github.com/nvengal/tools
-if [ ! -d "${HOME}/tools" ]
-then
-  git clone git@github.com:nvengal/tools $HOME/tools
-
-  if [ -n "$(command -v docker)" ]
+setup_vim() {
+  # vim-plug https://github.com/junegunn/vim-plug
+  if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
   then
-    pushd $HOME/tools
-    bash ./setup.sh
-    popd
-  else
-    echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    echo "  WARNING nvengal/tools installation requires docker"
-    echo "  Install docker and run $HOME/tools/setup.sh"
+    curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    vim +PlugInstall +qall
   fi
-fi
+}
 
-# Powerline Fonts
-# https://github.com/powerline/fonts
-git clone https://github.com/powerline/fonts.git --depth=1
-pushd fonts && ./install.sh
-popd && rm -rf fonts
+install_fonts() {
+  # Nerd Fonts
+  # https://github.com/ryanoasis/nerd-fonts
+  artifact="FiraCode.zip"
+  version="v2.3.3"
+  curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
+  unzip -o $artifact -d $HOME/.fonts
+  rm $artifact
+  fc-cache -fv
+}
+
+# https://www.rust-lang.org/tools/install
+install_rust() {
+  if [ ! -x "$(command -v rustup)" ]
+  then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+  fi
+}
+
+# https://github.com/jdxcode/rtx asdf in rust
+# https://starship.rs fancy prompt
+# https://github.com/dbrgn/tealdeer fast tldr
+install_cargo_packages() {
+  packages="ripgrep rtx-cli starship tealdeer zellij"
+  cargo install --locked $packages
+  tldr --update
+}
+
+# https://docs.docker.com/engine/install/debian/
+install_docker() {
+  if [ ! -x "$(command -v docker)" ]
+  then
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
+    dockerd-rootless-setuptool.sh install
+    sudo apt install --assume-yes docker-compose
+    rm get-docker.sh
+  fi
+}
+
+install_linux() {
+  packages="alacritty build-essential cmake curl file git libssl-dev stow tree uidmap unzip vim xclip"
+  sudo apt update && sudo apt install --assume-yes $packages
+  stow alacritty bash git vim
+  setup_vim
+  install_fonts
+  install_rust
+  install_cargo_packages
+  install_docker
+}
+
+main() {
+  os=$(uname | tr '[:upper:]' '[:lower:]')
+  case $os in
+    linux)
+      install_$os
+      ;;
+    *)
+      echo $os not supported
+      exit 1
+      ;;
+  esac
+}
+
+main
