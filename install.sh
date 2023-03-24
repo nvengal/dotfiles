@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 set -e
 
@@ -8,21 +8,6 @@ if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
 then
   curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
-# zpresto https://github.com/sorin-ionescu/prezto
-if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]
-then
-  setopt EXTENDED_GLOB
-
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-  mv "${ZDOTDIR:-$HOME}"/.zprezto/runcoms "${ZDOTDIR:-$HOME}"/.zprezto/runcoms.orig
-
-  ln -s ${PWD}/zprezto "${ZDOTDIR:-$HOME}"/.zprezto/runcoms
-
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-    ln -is "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-  done
 fi
 
 # tmux
@@ -41,25 +26,30 @@ then
   ./install-asdf-plugins.sh
 fi
 
-# https://github.com/nvengal/tools
-if [ ! -d "${HOME}/tools" ]
-then
-  git clone git@github.com:nvengal/tools $HOME/tools
-
-  if [ -n "$(command -v docker)" ]
-  then
-    pushd $HOME/tools
-    bash ./setup.sh
-    popd
-  else
-    echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    echo "  WARNING nvengal/tools installation requires docker"
-    echo "  Install docker and run $HOME/tools/setup.sh"
-  fi
-fi
-
 # Powerline Fonts
 # https://github.com/powerline/fonts
 git clone https://github.com/powerline/fonts.git --depth=1
 pushd fonts && ./install.sh
 popd && rm -rf fonts
+
+install_linux() {
+  packages="build-essential curl file git libssl-dev xclip"
+  sudo apt update && sudo apt install --assume-yes $packages
+}
+
+main() {
+  os=$(uname | tr '[:upper:]' '[:lower:]')
+  case $os in
+    linux)
+      install_$os
+      ;;
+    *)
+      echo $os not supported
+      exit 1
+      ;;
+  esac
+
+  stow
+}
+
+main
