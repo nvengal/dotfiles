@@ -44,14 +44,27 @@ install_cargo_packages() {
   tldr --update
 }
 
+# https://docs.docker.com/engine/install/debian/
+install_docker() {
+  if [ ! -x "$(command -v docker)" ]
+  then
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
+    dockerd-rootless-setuptool.sh install
+    sudo apt install --assume-yes docker-compose
+    rm get-docker.sh
+  fi
+}
+
 install_linux() {
-  packages="alacritty build-essential cmake curl file git libssl-dev stow tree unzip xclip"
+  packages="alacritty build-essential cmake curl file git libssl-dev stow tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   stow alacritty bash git vim
   setup_vim
   install_fonts
   install_rust
   install_cargo_packages
+  install_docker
 }
 
 main() {

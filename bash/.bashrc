@@ -118,7 +118,11 @@ fi
 
 set -o vi
 
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 . "$HOME/.cargo/env"
+
 eval "$(rtx activate bash)"
 eval "$(starship init bash)"
