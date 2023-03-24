@@ -48,7 +48,7 @@ install_fonts() {
 install_linux() {
   packages="build-essential curl file git libssl-dev stow xclip"
   sudo apt update && sudo apt install --assume-yes $packages
-  stow asdf git vim
+  stow bash git vim
   setup_vim
   install_fonts
 }
