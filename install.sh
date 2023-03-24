@@ -45,7 +45,7 @@ install_cargo_packages() {
 install_linux() {
   packages="alacritty build-essential cmake curl file git libssl-dev stow unzip xclip"
   sudo apt update && sudo apt install --assume-yes $packages
-  stow bash git vim
+  stow alacritty bash git vim
   setup_vim
   install_fonts
   install_rust

@@ -1,0 +1,10 @@
+font:
+  normal:
+    family: FiraCode NF
+    style: Regular
+  bold:
+    family: FiraCode NF
+    style: Bold
+  italic:
+    family: Fira Sans
+    style: Light Italic
