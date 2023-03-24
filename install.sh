@@ -31,19 +31,24 @@ install_fonts() {
 #     pushd $HOME/.asdf
 #     git checkout "$(git describe --abbrev=0 --tags)"
 #     popd
-
-#     install_asdf_plugins
 #   fi
 # }
 
-# install_asdf_plugins() {
-#   readonly STARSHIP_VERSION=1.4.1
+# https://www.rust-lang.org/tools/install
+install_rust() {
+  if [ ! -x "$(command -v rustup)" ]
+  then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source "$HOME/.cargo/env"
+  fi
+}
 
-#   echo "Installing starship ${STARSHIP_VERSION}"
-#   asdf plugin add starship && \
-#     asdf install starship $STARSHIP_VERSION && \
-#     asdf global starship $STARSHIP_VERSION
-# }
+# https://starship.rs fancy prompt
+# https://github.com/jdxcode/rtx asdf in rust
+install_cargo_packages() {
+  packages="rtx-cli starship"
+  cargo install $packages --locked
+}
 
 install_linux() {
   packages="build-essential curl file git libssl-dev stow xclip"
@@ -51,6 +56,8 @@ install_linux() {
   stow bash git vim
   setup_vim
   install_fonts
+  install_rust
+  install_cargo_packages
 }
 
 main() {
