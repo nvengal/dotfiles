@@ -1,3 +1,5 @@
 [user]
 	name = Nikhil Vengal
 	email = ngvengal@gmail.com
+[core]
+	editor = vim
