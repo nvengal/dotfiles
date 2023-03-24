@@ -39,8 +39,8 @@ install_rust() {
 # https://starship.rs fancy prompt
 # https://github.com/dbrgn/tealdeer fast tldr
 install_cargo_packages() {
-  packages="ripgrep rtx-cli starship tealdeer"
-  cargo install $packages --locked
+  packages="ripgrep rtx-cli starship tealdeer zellij"
+  cargo install --locked $packages
   tldr --update
 }
 
