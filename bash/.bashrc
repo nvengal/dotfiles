@@ -116,6 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+set -o vi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
 eval "$(rtx activate bash)"
