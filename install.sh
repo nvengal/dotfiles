@@ -23,9 +23,6 @@ install_fonts() {
   fc-cache -fv
 }
 
-## tmux
-#ln -is ${PWD}/tmux.conf ${HOME}/.tmux.conf
-
 # https://www.rust-lang.org/tools/install
 install_rust() {
   if [ ! -x "$(command -v rustup)" ]
