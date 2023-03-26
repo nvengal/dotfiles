@@ -56,7 +56,7 @@ install_docker() {
 install_linux() {
   packages="alacritty build-essential cmake curl file git libssl-dev stow tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
-  stow alacritty bash git vim
+  stow alacritty bash git vim zellij
   setup_vim
   install_fonts
   install_rust
