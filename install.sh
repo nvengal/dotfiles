@@ -3,12 +3,25 @@
 set -e
 
 setup_vim() {
-  # vim-plug https://github.com/junegunn/vim-plug
+  # https://github.com/junegunn/vim-plug
   if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
   then
     curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall +qall
+  fi
+
+  if [ ! -x "$(command -v nvim)" ]
+  then
+    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    sudo apt install ./nvim-linux64.deb
+    rm ./nvim-linux64.deb
+  fi
+  # https://github.com/wbthomason/packer.nvim
+  packer_dir="${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  if [ ! -d "$packer_dir" ]
+  then
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir
   fi
 }
 
@@ -56,7 +69,7 @@ install_docker() {
 install_linux() {
   packages="alacritty build-essential cmake curl file git libssl-dev stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
-  stow alacritty bash git vim
+  stow alacritty bash git nvim vim
   setup_vim
   install_fonts
   install_rust
