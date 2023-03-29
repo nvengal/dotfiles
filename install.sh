@@ -28,12 +28,15 @@ setup_vim() {
 install_fonts() {
   # Nerd Fonts
   # https://github.com/ryanoasis/nerd-fonts
-  artifact="FiraCode.zip"
-  version="v2.3.3"
-  curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
-  unzip -o $artifact -d $HOME/.fonts
-  rm $artifact
-  fc-cache -fv
+  if ! (fc-list | grep -q FiraCode)
+  then
+    artifact="FiraCode.zip"
+    version="v2.3.3"
+    curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
+    unzip -o $artifact -d $HOME/.fonts
+    rm $artifact
+    fc-cache -fv
+  fi
 }
 
 # https://www.rust-lang.org/tools/install
