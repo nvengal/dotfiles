@@ -62,23 +62,6 @@ install_alacritty_terminfo() {
     curl \
       --fail \
       --location \
-      --output /tmp/Alacritty.svg \
-      https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg
-
-    curl \
-      --fail \
-      --location \
-      --output /tmp/Alacritty.desktop \
-      https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
-
-    sudo mv /tmp/Alacritty.svg /usr/share/pixmaps/Alacritty.svg
-    sudo desktop-file-install /tmp/Alacritty.desktop
-    sudo update-desktop-database
-    sudo ln -s /home/$USER/.cargo/bin/alacritty /usr/local/bin/alacritty
-
-    curl \
-      --fail \
-      --location \
       --output /tmp/alacritty.info \
       https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info
 
