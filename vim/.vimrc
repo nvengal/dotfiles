@@ -3,8 +3,6 @@
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'rust-lang/rust.vim'
@@ -22,10 +20,6 @@ call plug#end()
 
 " Rust.Vim {
 "  let g:rustfmt_autosave = 1
-" }
-
-" FZF {
-  noremap <C-p> :FZF<CR>
 " }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
