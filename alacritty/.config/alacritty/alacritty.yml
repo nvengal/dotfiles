@@ -6,8 +6,8 @@ font:
     family: FiraCode NF
     style: Bold
   italic:
-    family: Fira Sans
-    style: Light Italic
+    family: FiraCode NF
+    style: Light
 
 # https://github.com/alacritty/alacritty-theme
 schemes:
