@@ -48,9 +48,11 @@ install_rust() {
   fi
 }
 
+# https://github.com/BurntSushi/ripgrep grep so fast
 # https://github.com/jdxcode/rtx asdf in rust
 # https://starship.rs fancy prompt
 # https://github.com/dbrgn/tealdeer fast tldr
+# https://github.com/zellij-org/zellij terminal multiplexer
 install_cargo_packages() {
   packages="ripgrep rtx-cli starship tealdeer zellij"
   cargo install --locked $packages
