@@ -36,6 +36,7 @@ install_vim() {
   if [ ! -d "$packer_dir" ]
   then
     git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir
+    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   fi
 }
 
