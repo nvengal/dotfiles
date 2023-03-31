@@ -111,9 +111,28 @@ set -o vi
 
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-# Default to fzf for bash completion
+alias fd='fdfind'
+
+#################### FZF ######################################################
+# Override path completion to use fd
+_fzf_compgen_path() {
+  echo "$1"
+  command fdfind --hidden --follow --exclude .git . $1
+}
+
+# Override dir completion to use fd
+_fzf_compgen_dir() {
+  command fdfind --type d --hidden --follow --exclude .git . $1
+}
+
+# Default to fzf for bash path completion
 export FZF_COMPLETION_TRIGGER=''
+# Use fd for fzf (respects gitignore and other niceties)
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#################### FZF ######################################################
 
 . "$HOME/.cargo/env"
 
