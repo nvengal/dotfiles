@@ -2,7 +2,21 @@
 
 set -e
 
-setup_vim() {
+install_fonts() {
+  # Nerd Fonts
+  # https://github.com/ryanoasis/nerd-fonts
+  if ! (fc-list | grep -q FiraCode)
+  then
+    artifact="FiraCode.zip"
+    version="v2.3.3"
+    curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
+    unzip -o $artifact -d $HOME/.fonts
+    rm $artifact
+    fc-cache -fv
+  fi
+}
+
+install_vim() {
   # https://github.com/junegunn/vim-plug
   if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
   then
@@ -22,20 +36,6 @@ setup_vim() {
   if [ ! -d "$packer_dir" ]
   then
     git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir
-  fi
-}
-
-install_fonts() {
-  # Nerd Fonts
-  # https://github.com/ryanoasis/nerd-fonts
-  if ! (fc-list | grep -q FiraCode)
-  then
-    artifact="FiraCode.zip"
-    version="v2.3.3"
-    curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
-    unzip -o $artifact -d $HOME/.fonts
-    rm $artifact
-    fc-cache -fv
   fi
 }
 
@@ -82,11 +82,11 @@ install_docker() {
 }
 
 install_linux() {
-  packages="alacritty build-essential cmake curl file fzf git libssl-dev stow tig tree uidmap unzip vim xclip"
+  packages="alacritty build-essential cmake curl file git libssl-dev stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   stow alacritty bash git nvim vim
-  setup_vim
   install_fonts
+  install_vim
   install_rust
   install_cargo_packages
   install_alacritty_terminfo
