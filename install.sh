@@ -69,6 +69,15 @@ install_alacritty_terminfo() {
   fi
 }
 
+# command-line fuzzy finder https://github.com/junegunn/fzf
+install_fzf() {
+  if [ ! -d "${HOME}/.fzf" ]
+  then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    $HOME/.fzf/install
+  fi
+}
+
 # https://docs.docker.com/engine/install/debian/
 install_docker() {
   if [ ! -x "$(command -v docker)" ]
@@ -90,6 +99,7 @@ install_linux() {
   install_rust
   install_cargo_packages
   install_alacritty_terminfo
+  install_fzf
   install_docker
 }
 

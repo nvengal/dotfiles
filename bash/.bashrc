@@ -111,7 +111,7 @@ set -o vi
 
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Default to fzf for bash completion
 export FZF_COMPLETION_TRIGGER=''
 
