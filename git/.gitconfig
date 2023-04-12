@@ -5,3 +5,5 @@
 	editor = vim
 [diff]
 	wsErrorHighlight = all
+[init]
+	defaultBranch = main
