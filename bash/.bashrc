@@ -126,7 +126,7 @@ _fzf_compgen_dir() {
 }
 
 # Default to fzf for bash path completion
-export FZF_COMPLETION_TRIGGER=''
+export FZF_COMPLETION_TRIGGER='.'
 # Use fd for fzf (respects gitignore and other niceties)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
