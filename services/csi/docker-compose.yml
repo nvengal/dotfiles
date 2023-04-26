@@ -1,0 +1,12 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:15.1
+    restart: always
+    environment:
+      POSTGRES_USER: nikhil
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - "./postgresql:/var/run/postgresql"
