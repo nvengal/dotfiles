@@ -111,6 +111,7 @@ set -o vi
 
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
+alias pbcopy='xclip -sel clip'
 alias fd='fdfind'
 
 #################### FZF ######################################################
