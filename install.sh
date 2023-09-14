@@ -31,13 +31,6 @@ install_vim() {
     sudo apt install ./nvim-linux64.deb
     rm ./nvim-linux64.deb
   fi
-  # https://github.com/wbthomason/packer.nvim
-  packer_dir="${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim"
-  if [ ! -d "$packer_dir" ]
-  then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim $packer_dir
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  fi
 }
 
 # https://www.rust-lang.org/tools/install
