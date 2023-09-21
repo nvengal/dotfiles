@@ -27,9 +27,8 @@ install_vim() {
 
   if [ ! -x "$(command -v nvim)" ]
   then
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
-    sudo apt install ./nvim-linux64.deb
-    rm ./nvim-linux64.deb
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    sudo apt update && sudo apt install neovim
   fi
 }
 
