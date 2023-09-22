@@ -113,6 +113,8 @@ export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 alias pbcopy='xclip -sel clip'
 alias fd='fdfind'
+# https://docs.commonfate.io/granted-cli/shell-alias/
+alias assume='source assume'
 
 #################### FZF ######################################################
 # Override path completion to use fd
