@@ -16,7 +16,7 @@ install_fonts() {
   fi
 }
 
-install_vim() {
+install_vim_plug() {
   # https://github.com/junegunn/vim-plug
   if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
   then
@@ -24,6 +24,10 @@ install_vim() {
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall +qall
   fi
+}
+
+install_vim() {
+  install_vim_plug
 
   if [ ! -x "$(command -v nvim)" ]
   then
@@ -130,6 +134,7 @@ install_darwin() {
   brew tap common-fate/granted
   brew install granted
 
+  install_vim_plug
   install_fzf_brew
   install_rust
   install_cargo_packages
