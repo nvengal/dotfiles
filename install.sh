@@ -73,6 +73,14 @@ install_fzf() {
   fi
 }
 
+install_fzf_brew() {
+  $(brew --prefix)/opt/fzf/install \
+    --xdg \
+    --no-update-rc \
+    --key-bindings \
+    --completion
+}
+
 # https://docs.docker.com/engine/install/debian/
 install_docker() {
   if [ ! -x "$(command -v docker)" ]
@@ -82,6 +90,16 @@ install_docker() {
     dockerd-rootless-setuptool.sh install
     sudo apt install --assume-yes docker-compose
     rm get-docker.sh
+  fi
+}
+
+install_homebrew() {
+  if [ ! -x "$(command -v brew)" ]
+  then
+    NONINTERACTIVE=1 /bin/bash -c "$(
+      curl  --fail --location --show-error --silent \
+        https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+    )"
   fi
 }
 
@@ -98,10 +116,29 @@ install_linux() {
   install_docker
 }
 
+install_darwin() {
+  install_homebrew
+  packages="fd fzf git stow vim nvim jq tig tree openssl@1.1 openssl@3 llvm cmake"
+  brew install $packages
+
+  source ./zsh/.zprofile
+  stow alacritty-mac git nvim vim zsh
+
+  brew tap homebrew/cask-fonts
+  brew install font-fira-code-nerd-font
+  brew install --cask alacritty
+  brew tap common-fate/granted
+  brew install granted
+
+  install_fzf_brew
+  install_rust
+  install_cargo_packages
+}
+
 main() {
   os=$(uname | tr '[:upper:]' '[:lower:]')
   case $os in
-    linux)
+    linux | darwin)
       install_$os
       ;;
     *)
