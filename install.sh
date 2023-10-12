@@ -122,7 +122,7 @@ install_linux() {
 
 install_darwin() {
   install_homebrew
-  packages="fd fzf git stow vim nvim jq tig tree openssl@1.1 openssl@3 llvm cmake"
+  packages="fd fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
   brew install $packages
 
   source ./zsh/.zprofile
