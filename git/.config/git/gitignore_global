@@ -1,0 +1,5 @@
+# global gitignore
+
+ngv-*/**
+ngv-*
+ngv_*

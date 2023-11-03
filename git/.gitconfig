@@ -1,9 +1,10 @@
 [user]
-	name = Nikhil Vengal
-	email = ngvengal@gmail.com
+  name = Nikhil Vengal
+  email = ngvengal@gmail.com
 [core]
-	editor = vim
+  editor = vim
+  excludesfile = ~/.config/git/gitignore_global
 [diff]
-	wsErrorHighlight = all
+  wsErrorHighlight = all
 [init]
-	defaultBranch = main
+  defaultBranch = main
