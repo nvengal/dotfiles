@@ -3,6 +3,12 @@
 # Vim mode
 bindkey -v
 
+
+# Load git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
+
 #################### FZF ######################################################
 # Override path completion to use fd
 _fzf_compgen_path() {
