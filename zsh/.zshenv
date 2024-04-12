@@ -1,9 +1,5 @@
 # zshenv
 
-HISTSIZE=20000
-HISTFILE=~/.zsh_history
-SAVEHIST=20000
-
 if command -v nvim > /dev/null; then
   export {EDITOR,GIT_EDITOR}=nvim
 else

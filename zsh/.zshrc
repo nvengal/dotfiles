@@ -1,8 +1,13 @@
 # zshrc
 
+export HISTSIZE=1000000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+
 # Vim mode
 bindkey -v
-
 
 # Load git completion
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
