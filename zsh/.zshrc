@@ -36,5 +36,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 #################### FZF ######################################################
 
-eval "$(rtx activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(starship init zsh)"

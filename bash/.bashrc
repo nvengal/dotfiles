@@ -139,5 +139,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 . "$HOME/.cargo/env"
 
-eval "$(rtx activate bash)"
+eval "$(mise activate bash)"
 eval "$(starship init bash)"
