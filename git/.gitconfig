@@ -6,5 +6,7 @@
   excludesfile = ~/.config/git/gitignore_global
 [diff]
   wsErrorHighlight = all
+[merge]
+  tool = nvim -d
 [init]
   defaultBranch = main
