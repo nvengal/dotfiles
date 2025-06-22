@@ -31,8 +31,9 @@ install_vim() {
 
   if [ ! -x "$(command -v nvim)" ]
   then
-    sudo add-apt-repository ppa:neovim-ppa/unstable -y
-    sudo apt update && sudo apt install neovim
+    wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
+    sudo chmod u+x nvim-linux-x86_64.appimage
+    sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
   fi
 }
 
@@ -108,7 +109,7 @@ install_homebrew() {
 }
 
 install_linux() {
-  packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev neovim pkg-config stow tig tree uidmap unzip vim xclip"
+  packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   stow alacritty bash git nvim vim
   install_fonts
