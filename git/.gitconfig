@@ -10,3 +10,5 @@
   tool = nvim -d
 [init]
   defaultBranch = main
+[alias]
+  add-trailer = commit --no-edit --amend --trailer
