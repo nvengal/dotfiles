@@ -7,3 +7,7 @@ Config files managed using [stow](https://www.gnu.org/software/stow/manual/stow.
 ```
 ./install.sh
 ```
+
+## Notes
+
+- [ghostty](https://ghostty.org/)
