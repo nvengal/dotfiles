@@ -112,7 +112,7 @@ install_homebrew() {
 install_linux() {
   packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
-  stow alacritty bash git nvim vim
+  stow alacritty bash git mise nvim vim
   install_fonts
   install_vim
   install_rust
@@ -128,7 +128,7 @@ install_darwin() {
   brew install $packages
 
   source ./zsh/.zprofile
-  stow alacritty-mac git nvim vim zsh
+  stow alacritty-mac git mise nvim vim zsh
 
   brew tap common-fate/granted
   brew install granted
