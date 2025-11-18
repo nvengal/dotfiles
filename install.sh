@@ -105,6 +105,7 @@ install_homebrew() {
       curl  --fail --location --show-error --silent \
         https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     )"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 }
 
@@ -129,9 +130,6 @@ install_darwin() {
   source ./zsh/.zprofile
   stow alacritty-mac git nvim vim zsh
 
-  brew tap homebrew/cask-fonts
-  brew install font-fira-code-nerd-font
-  brew install --cask alacritty
   brew tap common-fate/granted
   brew install granted
 
