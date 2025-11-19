@@ -37,24 +37,12 @@ install_vim() {
   fi
 }
 
-# https://www.rust-lang.org/tools/install
-install_rust() {
-  if [ ! -x "$(command -v rustup)" ]
+# https://mise.jdx.dev
+install_mise() {
+  if [ ! -x "$(command -v mise)" ]
   then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
+    curl https://mise.run | sh
   fi
-}
-
-# https://github.com/BurntSushi/ripgrep grep so fast
-# https://github.com/jdxcode/mise asdf in rust
-# https://starship.rs fancy prompt
-# https://github.com/dbrgn/tealdeer fast tldr
-# https://github.com/zellij-org/zellij terminal multiplexer
-install_cargo_packages() {
-  packages="mise ripgrep starship tealdeer zellij"
-  cargo install --locked $packages
-  tldr --update
 }
 
 install_alacritty_terminfo() {
@@ -67,23 +55,6 @@ install_alacritty_terminfo() {
 
     sudo tic -xe alacritty,alacritty-direct /tmp/alacritty.info
   fi
-}
-
-# command-line fuzzy finder https://github.com/junegunn/fzf
-install_fzf() {
-  if [ ! -d "${HOME}/.fzf" ]
-  then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    $HOME/.fzf/install
-  fi
-}
-
-install_fzf_brew() {
-  $(brew --prefix)/opt/fzf/install \
-    --xdg \
-    --no-update-rc \
-    --key-bindings \
-    --completion
 }
 
 # https://docs.docker.com/engine/install/debian/
@@ -109,23 +80,30 @@ install_homebrew() {
   fi
 }
 
+post_install() {
+  mise install
+  mise x cargo:tealdeer -- tldr --update
+}
+
 install_linux() {
-  packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
+  packages="alacritty build-essential cmake curl file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
+  install_mise
   stow alacritty bash git mise nvim vim
   install_fonts
   install_vim
-  install_rust
-  install_cargo_packages
   install_alacritty_terminfo
-  install_fzf
   install_docker
+
+  post_install
 }
 
 install_darwin() {
   install_homebrew
-  packages="fd fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
+  packages="git stow vim nvim jq tig tree openssl@1.1 openssl@3 llvm cmake"
   brew install $packages
+
+  install_mise
 
   source ./zsh/.zprofile
   stow alacritty-mac git mise nvim vim zsh
@@ -134,9 +112,8 @@ install_darwin() {
   brew install granted
 
   install_vim_plug
-  install_fzf_brew
-  install_rust
-  install_cargo_packages
+
+  post_install
 }
 
 main() {
