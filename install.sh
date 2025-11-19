@@ -37,6 +37,14 @@ install_vim() {
   fi
 }
 
+# https://mise.jdx.dev
+install_mise() {
+  if [ ! -x "$(command -v mise)" ]
+  then
+    curl https://mise.run | sh
+  fi
+}
+
 install_alacritty_terminfo() {
   if ! infocmp alacritty > /dev/null; then
     curl \
@@ -92,6 +100,7 @@ install_homebrew() {
 install_linux() {
   packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
+  install_mise
   stow alacritty bash git mise nvim vim
   install_fonts
   install_vim
@@ -104,6 +113,8 @@ install_darwin() {
   install_homebrew
   packages="fd fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
   brew install $packages
+
+  install_mise
 
   source ./zsh/.zprofile
   stow alacritty-mac git mise nvim vim zsh

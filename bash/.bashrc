@@ -137,5 +137,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 #################### FZF ######################################################
 
-eval "$(mise activate bash)"
+eval "$(~/.local/bin/mise activate bash)"
 eval "$(starship init bash)"
