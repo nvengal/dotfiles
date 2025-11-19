@@ -9,4 +9,3 @@ fi
 # https://docs.commonfate.io/granted-cli/shell-alias/
 alias assume='source assume'
 
-. "$HOME/.cargo/env"

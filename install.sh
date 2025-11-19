@@ -37,26 +37,6 @@ install_vim() {
   fi
 }
 
-# https://www.rust-lang.org/tools/install
-install_rust() {
-  if [ ! -x "$(command -v rustup)" ]
-  then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
-  fi
-}
-
-# https://github.com/BurntSushi/ripgrep grep so fast
-# https://github.com/jdxcode/mise asdf in rust
-# https://starship.rs fancy prompt
-# https://github.com/dbrgn/tealdeer fast tldr
-# https://github.com/zellij-org/zellij terminal multiplexer
-install_cargo_packages() {
-  packages="mise ripgrep starship tealdeer zellij"
-  cargo install --locked $packages
-  tldr --update
-}
-
 install_alacritty_terminfo() {
   if ! infocmp alacritty > /dev/null; then
     curl \
@@ -115,8 +95,6 @@ install_linux() {
   stow alacritty bash git mise nvim vim
   install_fonts
   install_vim
-  install_rust
-  install_cargo_packages
   install_alacritty_terminfo
   install_fzf
   install_docker
@@ -135,8 +113,6 @@ install_darwin() {
 
   install_vim_plug
   install_fzf_brew
-  install_rust
-  install_cargo_packages
 }
 
 main() {
