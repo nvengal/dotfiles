@@ -97,6 +97,11 @@ install_homebrew() {
   fi
 }
 
+post_install() {
+  mise install
+  mise x cargo:tealdeer -- tldr --update
+}
+
 install_linux() {
   packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
@@ -107,6 +112,8 @@ install_linux() {
   install_alacritty_terminfo
   install_fzf
   install_docker
+
+  post_install
 }
 
 install_darwin() {
@@ -124,6 +131,8 @@ install_darwin() {
 
   install_vim_plug
   install_fzf_brew
+
+  post_install
 }
 
 main() {

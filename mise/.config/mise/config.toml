@@ -1,2 +1,10 @@
 [settings]
-idiomatic_version_file_enable_tools = ["python", "go", "ruby", "node"]
+idiomatic_version_file_enable_tools = ["go", "node", "python", "ruby", "rust"]
+
+[tools]
+rust = "latest"
+cargo-binstall = "latest"
+"cargo:zellij" = "latest"
+"cargo:starship" = "latest"
+"cargo:ripgrep" = "latest"
+"cargo:tealdeer" = "latest"
