@@ -57,23 +57,6 @@ install_alacritty_terminfo() {
   fi
 }
 
-# command-line fuzzy finder https://github.com/junegunn/fzf
-install_fzf() {
-  if [ ! -d "${HOME}/.fzf" ]
-  then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    $HOME/.fzf/install
-  fi
-}
-
-install_fzf_brew() {
-  $(brew --prefix)/opt/fzf/install \
-    --xdg \
-    --no-update-rc \
-    --key-bindings \
-    --completion
-}
-
 # https://docs.docker.com/engine/install/debian/
 install_docker() {
   if [ ! -x "$(command -v docker)" ]
@@ -110,7 +93,6 @@ install_linux() {
   install_fonts
   install_vim
   install_alacritty_terminfo
-  install_fzf
   install_docker
 
   post_install
@@ -118,7 +100,7 @@ install_linux() {
 
 install_darwin() {
   install_homebrew
-  packages="fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
+  packages="git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
   brew install $packages
 
   install_mise
@@ -130,7 +112,6 @@ install_darwin() {
   brew install granted
 
   install_vim_plug
-  install_fzf_brew
 
   post_install
 }

@@ -112,9 +112,10 @@ set -o vi
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 alias pbcopy='xclip -sel clip'
-alias fd='fdfind'
 # https://docs.commonfate.io/granted-cli/shell-alias/
 alias assume='source assume'
+
+eval "$($HOME/.local/bin/mise activate bash)"
 
 #################### FZF ######################################################
 # Override path completion to use fd
@@ -134,8 +135,8 @@ export FZF_COMPLETION_TRIGGER='.'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
 #################### FZF ######################################################
 
-eval "$(~/.local/bin/mise activate bash)"
 eval "$(starship init bash)"
