@@ -103,7 +103,7 @@ post_install() {
 }
 
 install_linux() {
-  packages="alacritty build-essential cmake curl fd-find file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
+  packages="alacritty build-essential cmake curl file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   install_mise
   stow alacritty bash git mise nvim vim
@@ -118,7 +118,7 @@ install_linux() {
 
 install_darwin() {
   install_homebrew
-  packages="fd fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
+  packages="fzf git stow vim nvim jq tig tree awscli openssl@1.1 openssl@3 llvm cmake"
   brew install $packages
 
   install_mise
