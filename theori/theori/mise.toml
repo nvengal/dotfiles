@@ -1,6 +1,11 @@
+[env]
+GIT_AUTHOR_EMAIL = "nikhil@theori.io"
+
 [settings.python]
 uv_venv_auto = true
 
 [tools]
 uv = "latest"
-node = "latest"
+gcloud = "latest"
+node = "22"
+pnpm = "latest"
