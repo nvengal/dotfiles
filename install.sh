@@ -107,6 +107,7 @@ install_darwin() {
 
   source ./zsh/.zprofile
   stow alacritty-mac git mise nvim vim zsh
+  stow theori
 
   brew tap common-fate/granted
   brew install granted

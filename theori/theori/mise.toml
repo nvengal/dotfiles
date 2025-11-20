@@ -1,0 +1,6 @@
+[settings.python]
+uv_venv_auto = true
+
+[tools]
+uv = "latest"
+node = "latest"
