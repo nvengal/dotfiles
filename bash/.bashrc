@@ -109,13 +109,12 @@ fi
 
 set -o vi
 
+export EDITOR=vim
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 alias pbcopy='xclip -sel clip'
 # https://docs.commonfate.io/granted-cli/shell-alias/
 alias assume='source assume'
-
-eval "$($HOME/.local/bin/mise activate bash)"
 
 #################### FZF ######################################################
 # Override path completion to use fd
@@ -139,4 +138,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(fzf --bash)"
 #################### FZF ######################################################
 
+. "$HOME/.cargo/env"
+# Granted/Assume aws cli creds tool
+alias assume="source assume"
+
+eval "$(mise activate bash)"
 eval "$(starship init bash)"
