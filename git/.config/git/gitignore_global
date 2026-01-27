@@ -1,5 +1,7 @@
 # global gitignore
 
-ngv-*/**
-ngv-*
-ngv_*
+ngv*/**
+ngv*
+
+conductor.json
+.basedpyright

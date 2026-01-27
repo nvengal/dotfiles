@@ -1,4 +1,6 @@
 [env]
+MISE_ENV_FILE = ".env"
+LOGLEVEL = "info"
 GIT_AUTHOR_EMAIL = "nikhil@theori.io"
 
 [settings.python]
@@ -6,6 +8,11 @@ uv_venv_auto = true
 
 [tools]
 uv = "latest"
-gcloud = "latest"
+rust = "latest"
+go = "latest"
 node = "22"
+terraform = "1"
 pnpm = "latest"
+gcloud = "latest"
+"npm:@openai/codex" = "latest"
+"npm:@anthropic-ai/claude-code" = "latest"

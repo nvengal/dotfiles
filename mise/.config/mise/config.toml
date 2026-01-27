@@ -1,3 +1,6 @@
+[env]
+MISE_ENV_FILE = ".env"
+
 [settings]
 idiomatic_version_file_enable_tools = ["go", "node", "python", "ruby", "rust"]
 
@@ -11,3 +14,6 @@ cargo-binstall = "latest"
 "github:sharkdp/fd" = "latest"
 "github:junegunn/fzf" = "latest"
 awscli = "latest"
+
+uv = "latest"
+node = "22"
