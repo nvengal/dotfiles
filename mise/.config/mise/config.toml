@@ -15,5 +15,5 @@ cargo-binstall = "latest"
 "github:junegunn/fzf" = "latest"
 awscli = "latest"
 
-uv = "latest"
-node = "22"
+jujutsu = "latest"
+"cargo:starship-jj" = "latest"

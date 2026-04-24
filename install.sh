@@ -5,8 +5,7 @@ set -e
 install_fonts() {
   # Nerd Fonts
   # https://github.com/ryanoasis/nerd-fonts
-  if ! (fc-list | grep -q FiraCode)
-  then
+  if ! (fc-list | grep -q FiraCode); then
     artifact="FiraCode.zip"
     version="v2.3.3"
     curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/$version/$artifact
@@ -18,8 +17,7 @@ install_fonts() {
 
 install_vim_plug() {
   # https://github.com/junegunn/vim-plug
-  if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]
-  then
+  if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
     curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall +qall
@@ -29,8 +27,7 @@ install_vim_plug() {
 install_vim() {
   install_vim_plug
 
-  if [ ! -x "$(command -v nvim)" ]
-  then
+  if [ ! -x "$(command -v nvim)" ]; then
     wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
     sudo chmod u+x nvim-linux-x86_64.appimage
     sudo mv nvim-linux-x86_64.appimage /usr/bin/nvim
@@ -39,14 +36,13 @@ install_vim() {
 
 # https://mise.jdx.dev
 install_mise() {
-  if [ ! -x "$(command -v mise)" ]
-  then
+  if [ ! -x "$(command -v mise)" ]; then
     curl https://mise.run | sh
   fi
 }
 
 install_alacritty_terminfo() {
-  if ! infocmp alacritty > /dev/null; then
+  if ! infocmp alacritty >/dev/null; then
     curl \
       --fail \
       --location \
@@ -59,8 +55,7 @@ install_alacritty_terminfo() {
 
 # https://docs.docker.com/engine/install/debian/
 install_docker() {
-  if [ ! -x "$(command -v docker)" ]
-  then
+  if [ ! -x "$(command -v docker)" ]; then
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh ./get-docker.sh
     dockerd-rootless-setuptool.sh install
@@ -70,10 +65,9 @@ install_docker() {
 }
 
 install_homebrew() {
-  if [ ! -x "$(command -v brew)" ]
-  then
+  if [ ! -x "$(command -v brew)" ]; then
     NONINTERACTIVE=1 /bin/bash -c "$(
-      curl  --fail --location --show-error --silent \
+      curl --fail --location --show-error --silent \
         https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     )"
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -89,7 +83,7 @@ install_linux() {
   packages="alacritty build-essential cmake curl file git jq libssl-dev pkg-config stow tig tree uidmap unzip vim xclip"
   sudo apt update && sudo apt install --assume-yes $packages
   install_mise
-  stow alacritty bash git mise nvim vim
+  stow alacritty bash git mise nvim vim starship
   install_fonts
   install_vim
   install_alacritty_terminfo
@@ -106,7 +100,7 @@ install_darwin() {
   install_mise
 
   source ./zsh/.zprofile
-  stow alacritty-mac git mise nvim vim zsh
+  stow alacritty-mac git mise nvim vim zsh starship
   stow theori
 
   brew tap common-fate/granted
@@ -120,13 +114,13 @@ install_darwin() {
 main() {
   os=$(uname | tr '[:upper:]' '[:lower:]')
   case $os in
-    linux | darwin)
-      install_$os
-      ;;
-    *)
-      echo $os not supported
-      exit 1
-      ;;
+  linux | darwin)
+    install_$os
+    ;;
+  *)
+    echo $os not supported
+    exit 1
+    ;;
   esac
 }
 
