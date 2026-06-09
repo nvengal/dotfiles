@@ -38,4 +38,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 source <(fzf --zsh)
 #################### FZF ######################################################
 
+source <(COMPLETE=zsh jj)
+
 eval "$(starship init zsh)"

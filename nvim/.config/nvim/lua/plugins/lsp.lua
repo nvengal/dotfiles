@@ -16,6 +16,8 @@ return {
       },
       servers = {
         basedpyright = {
+          -- Temp disable for ty
+          filetypes = {},
           settings = {
             basedpyright = {
               analysis = {
@@ -24,6 +26,7 @@ return {
             },
           },
         },
+        ty = {},
         ruff = {
           -- use only for formatting with `conform`
           filetypes = {},

@@ -5,3 +5,5 @@ ngv*
 
 conductor.json
 .basedpyright
+.claude
+Procfile.ngv

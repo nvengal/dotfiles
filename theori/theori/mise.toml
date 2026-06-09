@@ -8,11 +8,15 @@ uv_venv_auto = true
 
 [tools]
 uv = "latest"
-rust = "latest"
 go = "latest"
 node = "22"
 terraform = "1"
+tflint = "latest"
+bun = "latest"
 pnpm = "latest"
-gcloud = "latest"
 "npm:@openai/codex" = "latest"
-"npm:@anthropic-ai/claude-code" = "latest"
+"aqua:anthropics/claude-code" = "latest"
+
+gh = "latest"
+"go:oss.terrastruct.com/d2" = "latest"
+"pipx:nickstenning/honcho" = "latest"
