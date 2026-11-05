@@ -2,7 +2,7 @@
 MISE_ENV_FILE = ".env"
 
 [settings]
-idiomatic_version_file_enable_tools = ["go", "node", "python", "ruby", "rust"]
+idiomatic_version_file_enable_tools = ["go", "node", "ruby", "rust"]
 
 [tools]
 rust = "latest"
@@ -17,3 +17,8 @@ awscli = "latest"
 
 jujutsu = "latest"
 "cargo:starship-jj" = "latest"
+
+"npm:@openai/codex" = "latest"
+"aqua:anthropics/claude-code" = "latest"
+
+"go:github.com/nvengal/talk-diffy-to-me/cmd/diffy" = "go-latest"

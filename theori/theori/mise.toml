@@ -14,9 +14,16 @@ terraform = "1"
 tflint = "latest"
 bun = "latest"
 pnpm = "latest"
+
 "npm:@openai/codex" = "latest"
 "aqua:anthropics/claude-code" = "latest"
 
 gh = "latest"
 "go:oss.terrastruct.com/d2" = "latest"
 "pipx:nickstenning/honcho" = "latest"
+
+"aqua:aws/session-manager-plugin" = "latest"
+
+"pypi:unclebob/crapper" = "latest"
+"pypi:unclebob/dryer" = "latest"
+"pypi:unclebob/mutator" = { version = "latest", with = ["crapper @ git+https://github.com/unclebob/crapper"] }
